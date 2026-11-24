@@ -19,7 +19,7 @@ function removeItem(event) {
   updateTotalPrice(-price);
   item.remove();
 }
-
+//  Function to add product
 function addProduct() {
     const name = productNameInput.value.trim();
     const price = parseFloat(productPriceInput.value);
@@ -28,13 +28,26 @@ function addProduct() {
         alert('Enter a valid product name and a price greater than 0.');
         return;
     }
+    // Creating list item to attach price for remove item can be triggered
         const li = document.createElement('li');
         li.classList.add('cart-item');
         li.dataset.price = price.toFixed(2);
-        
+       
+        //  Making text label on item name and price
         const itemText = document.createElement('span');
         itemText.textContent = `${name} - $${price.toFixed(2)}`;
-        const removeButton.textContent = document.createElement('button');
-        removeButton.
-        )
+        // Creating remove button
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.addEventListener('click', removeItem);
+// Adding child elements to 'li' towards DOM
+        li.appendChild(itemText);
+        li.appendChild(removeButton);
+        cart.appendChild(li);
+//  Updating total price and restting inputs
+        updateTotalPrice(price);
+        productNameInput.value = '';
+        productNameInput.focus();
     }
+// Adding clicks towards Add product button
+    addProductButton.addEventListener('click', addProduct);
